@@ -1,32 +1,27 @@
-
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<body>
-
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container-fluid">
-                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </a>
-                <a class="brand" href="#">BBH-RESTRICTION</a>
-                <div class="nav-collapse collapse">
-                    <p class="navbar-text pull-right">
-                        Logged in as <a href="#" class="navbar-link">Username</a>
-                    </p>
-                    <ul class="nav">
-                        <li class="active"><a href="#">Restrictions</a></li>
-                        <li><a href="#about">Entry</a></li>
-                        <li><a href="#contact">Approval</a></li>
-                        <li><a href="#contact">Monitoring</a></li>
-                        <li><a href="#contact">Admin</a></li>
-                    </ul>
-                </div> <!--/.nav-collapse -->
-            </div>
+    
+     <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+           <a class="navbar-brand" href="<%=request.getContextPath()%>/pages/home.jsp">BBH-RESTRICTION</a>
         </div>
-    </div>
-
-</body>
-</html>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="<%=request.getContextPath()%>/pages/restrictions.jsp">Restrictions</a></li>
+            <li><a href="#about">Entry</a></li>
+            <li><a href="#contact">Approval</a></li>
+            <li><a href="#contact">Monitoring</a></li>
+            <li><a href="#contact">Admin</a></li>
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+ 
+ 

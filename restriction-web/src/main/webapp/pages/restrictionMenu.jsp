@@ -1,7 +1,5 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<body>
 
     <div class="well sidebar-nav">
         <ul class="nav nav-list">
@@ -10,6 +8,3 @@
             <li><a href="?lang=en">Approval</a></li>
         </ul>
     </div>
-
-</body>
-</html>
