@@ -9,7 +9,8 @@
       
         <!-- See http://twitter.github.com/bootstrap/scaffolding.html#responsive -->
         
-        <link href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css" rel="stylesheet">.
+        <link href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css" rel="stylesheet">
+        <link href="<%=request.getContextPath()%>/resources/css/datepicker.css" rel="stylesheet">
         <%-- <link href="<%=request.getContextPath()%>/resources/css/bootstrap-theme.css" rel="stylesheet"> --%>
         
         
@@ -31,3 +32,4 @@
 		
 	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/bootstrap-datepicker.js" type="text/javascript"></script>

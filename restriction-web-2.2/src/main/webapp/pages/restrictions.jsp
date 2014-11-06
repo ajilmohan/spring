@@ -96,6 +96,49 @@
 												<option>5</option>
 											</select>
 										</div>
+										
+										<div class="col-md-4">
+											<!-- Date <br /> 
+											<div class="input-append date form_datetime">
+											    <input size="16" type="text" value="" readonly>
+											    <span class="add-on"><i class="icon-th"></i></span>
+											</div>
+ 
+											<script type="text/javascript">
+											    $(".form_datetime").datetimepicker({
+											        format: "dd MM yyyy",
+											        autoclose: true,
+											        todayBtn: true,
+											        pickerPosition: "bottom-right"
+											    });
+											</script>   -->
+											Date <br/>
+											<div data-date-format="dd-mm-yyyy" data-date="12-02-2012" class="input-append date myDatepicker">
+											    <input type="text" value="" size="16" class="span2">
+											    <span class="add-on"><i class="icon-calendar"></i></span>
+										    </div>
+										    
+										    <script type="text/javascript">
+												    $('.myDatepicker').each(function() {
+												        var minDate = new Date();
+												        minDate.setHours(0);
+												        minDate.setMinutes(0);
+												        minDate.setSeconds(0,0);
+												        
+												        var $picker = $(this);
+												        $picker.datepicker();
+												        
+												        var pickerObject = $picker.data('datepicker');
+												        
+												        $picker.on('changeDate', function(ev){
+												            $picker.datepicker('hide');
+												        });
+												    });
+										    
+										    </script>
+											
+										</div>
+										
 									</div>
 									<br />
 									<div class="row">
