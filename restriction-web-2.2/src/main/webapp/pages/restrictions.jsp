@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,7 +32,7 @@
 					</div>
 					<div id="collapseTwo" class="panel-collapse collapse"
 						role="tabpanel" aria-labelledby="headingTwo">
-
+						<form:form id="restrictionFilterForm" method="GET" commandName="searchForm"  class="form-horizontal">
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-md-12">
@@ -143,7 +145,7 @@
 									<br />
 									<div class="row">
 										<div class="col-md-3">
-											<button class="btn btn-small btn-primary" type="button">Apply
+											<button class="btn btn-small btn-primary" onclick="doRestrictionSearch()" type="button">Apply
 												Filter</button>
 											<button class="btn btn-small btn-primary" type="button">Reset
 												Filter</button>
@@ -153,7 +155,7 @@
 							</div>
 						</div>
 
-
+					</form:form>
 					</div>
 				</div>
 
@@ -162,116 +164,157 @@
 			<div class="row" >
 					<div class="col-md-12" >
 					
+					<!-- add table here -->
 					
-						<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-						        <thead>
-						            <tr>
-						                <th>Restriction Type</th>
-						                <th>Fund Major</th>
-						                <th>Fund Indicator</th>
-						                <th>User Security</th>
-						                <th>Market</th>
-						                <th>Buffer</th>
-						            </tr>
-						        </thead>
-						 
-						        <tfoot>
-						            <tr>
-						                <th>Restriction Type</th>
-						                <th>Fund Major</th>
-						                <th>Fund Indicator</th>
-						                <th>User Security</th>
-						                <th>Market</th>
-						                <th>Buffer</th>
-						            </tr>
-						        </tfoot>
-						 
-						        <tbody>
-						            <tr>
-						                <td>Tiger Nixon</td>
-						                <td>System Architect</td>
-						                <td>Edinburgh</td>
-						                <td>61</td>
-						                <td>2011/04/25</td>
-						                <td>$320,800</td>
-						            </tr>
-						            <tr>
-						                <td>Garrett Winters</td>
-						                <td>Accountant</td>
-						                <td>Tokyo</td>
-						                <td>63</td>
-						                <td>2011/07/25</td>
-						                <td>$170,750</td>
-						            </tr>
-						            <tr>
-						                <td>Ashton Cox</td>
-						                <td>Junior Technical Author</td>
-						                <td>San Francisco</td>
-						                <td>66</td>
-						                <td>2009/01/12</td>
-						                <td>$86,000</td>
-						            </tr>
-						            <tr>
-						                <td>Cedric Kelly</td>
-						                <td>Senior Javascript Developer</td>
-						                <td>Edinburgh</td>
-						                <td>22</td>
-						                <td>2012/03/29</td>
-						                <td>$433,060</td>
-						            </tr>
-						            <tr>
-						                <td>Airi Satou</td>
-						                <td>Accountant</td>
-						                <td>Tokyo</td>
-						                <td>33</td>
-						                <td>2008/11/28</td>
-						                <td>$162,700</td>
-						            </tr>
-						            <tr>
-						                <td>Brielle Williamson</td>
-						                <td>Integration Specialist</td>
-						                <td>New York</td>
-						                <td>61</td>
-						                <td>2012/12/02</td>
-						                <td>$372,000</td>
-						            </tr>
-						            <tr>
-						                <td>Herrod Chandler</td>
-						                <td>Sales Assistant</td>
-						                <td>San Francisco</td>
-						                <td>59</td>
-						                <td>2012/08/06</td>
-						                <td>$137,500</td>
-						            </tr>
-						            <tr>
-						                <td>Rhona Davidson</td>
-						                <td>Integration Specialist</td>
-						                <td>Tokyo</td>
-						                <td>55</td>
-						                <td>2010/10/14</td>
-						                <td>$327,900</td>
-						            </tr>
-						            <tr>
-						                <td>Colleen Hurst</td>
-						                <td>Javascript Developer</td>
-						                <td>San Francisco</td>
-						                <td>39</td>
-						                <td>2009/09/15</td>
-						                <td>$205,500</td>
-						            </tr>
-						            <tr>
-						                <td>Sonya Frost</td>
-						                <td>Software Engineer</td>
-						                <td>Edinburgh</td>
-						                <td>23</td>
-						                <td>2008/12/13</td>
-						                <td>$103,600</td>
-						            </tr>
-						            
-						            
-						        </tbody>
-						    </table>
-					
+						<form:form id="searchResultForm" class="form-horizontal"
+										method="POST" commandName="searchForm"
+										action="searchDetail.rsn">
+										
+										
+							<table class="table table-striped table-bordered"
+										id="searchresults">
+								<thead>
+									<tr>
+											<th> Status </th>
+											<th> Restriction Type </th>
+											<th> Fund ID </th>
+											<th> Fund Name </th>
+											<th> Fund Major </th>
+											<th> User Security </th>
+											<th> Security </th>
+											<th> Short Name </th>
+											<th> Security Mismatch </th>
+											<th> Market </th>
+											<th> Class </th>
+											<th> No Main Code </th>
+											<th> Special Instruction Type </th>
+											<th> Last Updated By </th>
+											<th> Lendable/Restriction </th>
+											<th> Buffer </th>
+											<th> Shares </th>
+											<th> From Date </th>
+											<th> To Date </th>
+											<th> Comments </th>
+											<th> Override </th>
+											<th> Restriction ID </th>
+									
+								    </tr>	
+								 </thead>	
+								 <tbody>
+								<%--  <c:out value="${restrictions}"/>  --%>
+								 		<c:forEach items="${restrictions}" var="restriction"
+													varStatus="status">
+													<tr>
+
+														<td>${restriction.restrictionId}</td>
+														<td>${restriction.restrictionType}</td>
+														<td>${restriction.fundMajor}</td>
+														<td>${restriction.userSecurity}</td>
+														<td>${restriction.restrictionId}</td>
+														<td>${restriction.restrictionType}</td>
+														<td>${restriction.fundMajor}</td>
+														<td>${restriction.userSecurity}</td>
+														<td>${restriction.restrictionId}</td>
+														<td>${restriction.restrictionType}</td>
+														<td>${restriction.fundMajor}</td>
+														<td>${restriction.userSecurity}</td>
+														<td>${restriction.restrictionId}</td>
+														<td>${restriction.restrictionType}</td>
+														<td>${restriction.fundMajor}</td>
+														<td>${restriction.userSecurity}</td>
+														<td>${restriction.restrictionId}</td>
+														<td>${restriction.restrictionType}</td>
+														<td>${restriction.fundMajor}</td>
+														<td>${restriction.userSecurity}</td>
+														<td>${restriction.fundMajor}</td>
+														<td>${restriction.userSecurity}</td>
+														
+													</tr>
+										</c:forEach>	
+										<c:if test="${fn:length(restrictions) == 0}">
+											<tr>
+													<td colspan="8">
+														<h5 class="noDataFound">No data is available for the search criteria</h5>
+													</td>
+											</tr>
+											
+										
+										</c:if>
+										
+										<c:if test="${fn:length(restrictions) != 0}">
+											 <form:hidden id="pageNumVar" path="pageNum" />
+										<tr>
+											<td colspan="24" id="bgImg"
+												style="margin: 0; padding: 3px; background: #ebebeb;">
+												<table width="100%" border="0" style="border-bottom: 0;">
+													<tr>
+														<c:if test="${searchForm.pageNum gt 2}">
+															<td width="3%"><a href="javascript:void(0)"
+																onclick="updatePageNumAndSubmitForm(1)"><img
+																	src="<%=request.getContextPath()%>/resources/img/aerow1.png"
+																	width="24" height="24" border="0" alt=""></a></td>
+														</c:if>
+														<c:if test="${searchForm.pageNum != 1}">
+															<td width="3%"><a href="javascript:void(0)"
+																onclick="updatePageNumAndSubmitForm(${searchForm.pageNum - 1})"><img
+																	src="<%=request.getContextPath()%>/resources/img/aerow2.png"
+																	width="24" height="24" border="0" alt=""></a></td>
+														</c:if>
+														<td width="30%">
+															<ul id="nobs">
+																<c:forEach begin="${startPage}" end="${endPage}"
+																	var="i">
+																	<c:choose>
+																		<c:when test="${searchForm.pageNum eq i}">
+																			<li><a href="javascript:void(0)"
+																				class="active">${i}</a></li>
+																		</c:when>
+																		<c:otherwise>
+																			<li><a href="javascript:void(0)"
+																				onclick="updatePageNumAndSubmitForm(${i})">${i}</a></li>
+																		</c:otherwise>
+																	</c:choose>
+																</c:forEach>
+															</ul> <c:if test="${searchForm.pageNum lt noOfPages}">
+																<div class="pagination-button">
+																	<a href="javascript:void(0)"
+																		onclick="updatePageNumAndSubmitForm(${searchForm.pageNum + 1})"><img
+																		src="<%=request.getContextPath()%>/resources/img/aerow3.png"
+																		width="24" height="24" border="0" alt=""></a>
+																</div>
+															</c:if> <c:if test="${(noOfPages - searchForm.pageNum) gt 1}">
+																<div class="pagination-button">
+																	<a href="javascript:void(0)"
+																		onclick="updatePageNumAndSubmitForm(${noOfPages})"><img
+																		src="<%=request.getContextPath()%>/resources/img/aerow4.png"
+																		width="24" height="24" border="0" alt=""></a>
+																</div>
+															</c:if>
+
+
+														</td>
+														<td width="3%">																	
+														</td>
+														<td width="3%">																	
+														</td>
+														<td width="30%"></td>
+														<td width="19%" class="pageBar">${pgnStats}</td>
+														<td width="1%">
+															
+														</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+										
+										</c:if>
+										
+										
+								 </tbody>	
+							</table>
+										
+										
+						</form:form>
 					
 					
 					</div>
